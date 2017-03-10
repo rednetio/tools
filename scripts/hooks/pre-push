@@ -1,0 +1,11 @@
+#!/bin/bash
+
+branch=$(git rev-parse --abbrev-ref HEAD)
+
+if [ "$branch" = "master" -o "$branch" = "develop" ]; then
+  >&2 echo "Please do not push on ${branch}, create a branch then open a pull request"
+  exit 1
+fi
+
+echo -e "Follow this link to create your pull request:\n"
+echo -e "    https://github.com/rednetio/tools/compare/master...${branch}\n"

@@ -1,0 +1,10 @@
+#!/bin/bash
+
+files=$(git --no-pager diff --name-status --cached | grep "\.js")
+if [ ${#files} -gt 0 ]
+  then
+  echo "🕵  A JavaScript file has been modified. Running linter."
+  npm run lint || exit 1
+fi
+
+exit 0
